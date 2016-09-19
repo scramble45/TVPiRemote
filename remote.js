@@ -4,10 +4,10 @@ var async       = require('async');
 	request     = require('request'),
 	xml2js      = require('xml2js'),
 	parser      = new xml2js.Parser(),
-    express     = require("express"),
-    app         = require('express')(),
-    server      = require('http').Server(app),
-    io          = require('socket.io')(server);
+        express     = require("express"),
+        app         = require('express')(),
+        server      = require('http').Server(app),
+        io          = require('socket.io')(server);
 
 server.listen(80);
 
