@@ -1,0 +1,25 @@
+express:
+  port: 80
+
+auth:
+  username: 'admin'
+  password: 'password'
+
+devices:
+  marantz:
+    server: '192.168.10.176'
+    buttons:
+      aux2: 'PutZone_InputFunction/AUX2'
+      bluray: 'PutZone_InputFunction/BD'
+      game: 'PutZone_InputFunction/GAME'
+      media: 'PutZone_InputFunction/MPLAY'
+      mute: 'PutVolumeMute/on'
+      volDown: 'PutMasterVolumeBtn/<'
+      volPreset: 'PutMasterVolumeSet/-20.0'
+      volUp: 'PutMasterVolumeBtn/>'
+
+commands:
+  tv:
+    on: 'irsend SEND_ONCE Benq850 ON'
+    off: 'irsend SEND_ONCE Benq850 OFF'
+  ps5:
