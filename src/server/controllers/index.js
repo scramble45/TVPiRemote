@@ -1,1 +1,0 @@
-exports.Remote = require('./remote')

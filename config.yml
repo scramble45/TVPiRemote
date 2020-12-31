@@ -1,5 +1,5 @@
 express:
-  port: 80
+  port: 3002
 
 auth:
   username: 'admin'
@@ -9,6 +9,9 @@ devices:
   marantz:
     server: '192.168.10.176'
     buttons:
+      power:
+        on: 'PutZone_OnOff/ON'
+        off: 'PutZone_OnOff/OFF'
       aux2: 'PutZone_InputFunction/AUX2'
       bluray: 'PutZone_InputFunction/BD'
       game: 'PutZone_InputFunction/GAME'
