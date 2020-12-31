@@ -14,7 +14,7 @@ router.get("/power/:cmd", wrap(async function powerHandler(req, res) {
 }))
 
 router.get("/volume/:cmd", wrap(async function volumeHandler(req, res) {
-  let result = await volume(req.context, req.params.cmd)
+  let result = await volume(req.context, req.params.cmd, req.query)
   return res.json(result)
 }))
 

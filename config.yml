@@ -18,8 +18,9 @@ devices:
       media: 'PutZone_InputFunction/MPLAY'
       mute: 'PutVolumeMute/on'
       volDown: 'PutMasterVolumeBtn/<'
-      volPreset: 'PutMasterVolumeSet/-20.0'
+      volPreset: 'PutMasterVolumeSet/'
       volUp: 'PutMasterVolumeBtn/>'
+    defaultVolume: -20.0
 
 commands:
   tv:

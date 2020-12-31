@@ -11,21 +11,32 @@ const {
   NotFoundError
 } = require('../../errors')
 
-async function issueReceiverCmd(cmd) {
+async function issueReceiverCmd(cmd, options) {
   try {
-    let response = await axios({
+    let result = {}
+
+    if (options?.volumeLevel) {
+      result.level = options.volumeLevel
+    }
+
+    if (options?.volumePreset) {
+      result.preset = options.volumePreset
+      cmd = cmd + result.preset
+    }
+
+    let opts = {
       method: 'get',
       url: `http://${config?.devices?.marantz?.server}/MainZone/index.put.asp?cmd0=${cmd}`
-    })
+    }
+
+    let response = await axios(opts)
     
     if (response.status === 200){
-      return Promise.resolve({
-        status: 'ok'
-      })
+      result.status = 'ok'
+      return Promise.resolve(result)
     } else {
-      return Promise.resolve({
-        status: 'error'
-      })
+      result.status = 'error'
+      return Promise.resolve(result)
     }
 
   } catch (err) {
