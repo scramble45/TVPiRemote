@@ -39,13 +39,43 @@ async function power(context, cmd) {
         await issueReceiverCmd(config?.devices?.marantz?.buttons?.power?.off)
   
         // power off projector
-        await exec(`sleep 3 && ${config?.commands?.tv?.off} && sleep 2 && ${config?.commands?.tv?.off}`)
-  
+        try {
+          await exec(`sleep 3 && ${config?.commands?.tv?.off} && sleep 2 && ${config?.commands?.tv?.off}`)
+        } catch (e) {
+          console.error(e)
+        }
+
         return Promise.resolve({
           status: 'ok'
         })
       } else {
         // reciever is off so just return status
+        return Promise.resolve({
+          status: 'ok'
+        })
+      }
+    case 'toggle':
+      if (powerState?.Power?.value === 'ON') {
+        // power off reciever
+        await issueReceiverCmd(config?.devices?.marantz?.buttons?.power?.off)
+  
+        // power off projector
+        await exec(`sleep 3 && ${config?.commands?.tv?.off} && sleep 2 && ${config?.commands?.tv?.off}`).catch((error) => {
+          console.error(error)
+        })
+        
+        return Promise.resolve({
+          status: 'ok'
+        })
+      } else { 
+        // power on reciever
+        await issueReceiverCmd(config?.devices?.marantz?.buttons?.power?.on)
+  
+        // power on projector
+        await exec(config?.commands?.tv?.on).catch((error) => {
+          console.error(error)
+        })
+
         return Promise.resolve({
           status: 'ok'
         })

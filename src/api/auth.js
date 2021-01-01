@@ -9,6 +9,7 @@ const configSrc = path.join(__dirname, '../../config.yml')
 const config    = yaml.safeLoad(fs.readFileSync(configSrc), 'utf8')
 
 async function auth(req, res, next) {
+  if (req?.headers['x-skip-auth'] === 'true') return next() // skip auth
   if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") return next() // skip auth
 
   const basicAuthLogins = {[config.auth.username]: config.auth.password}
